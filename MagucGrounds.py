@@ -7,6 +7,8 @@ character_names =["Aragorn", "Gandalf", "Legolas", "Gimli", "Frodo", "Samwise", 
 adventure_locations = ["Enchanted Forest", "Dark Caves", "Mystic Mountains", "Ancient Ruins", "Haunted Castle"]
 quest_types = ["Rescue the Princess", "Defeat the Dragon", "Find the Lost Treasure", "Protect the Village", "Explore the Unknown"]
 
+events = []
+
 
 class CharactorType(Enum):
     WARRIOR = 1
@@ -24,6 +26,28 @@ class SkillClass(Enum):
     INTERMEDIATE = 2
     ADVANCED = 3
 
+@dataclass
+class Event:
+    name: str
+    description: str
+
+@dataclass
+class Quest:
+    name: str
+    description: str
+    action: str
+
+@dataclass
+class Goal:
+    name: str
+    description: str
+    action: str
+
+@dataclass
+class Mission:
+    name: str
+    description: str
+    goals: list[Goal]
 
 @dataclass
 class Charactor:
@@ -34,7 +58,14 @@ class Charactor:
     xp: int = 25
     money: float = 10.0
     skill_level: int = 1
-    skill_class: SkillClass = SkillClass.BASIC 
+    skill_class: SkillClass = SkillClass.BASIC
+
+@dataclass
+class Adventure:
+    name: str
+    events: list[Event]
+    quests: list[Quest]
+    mission: Mission
 
 print("Welcome to the Maguc Grounds")
 print("Create your charactor")
